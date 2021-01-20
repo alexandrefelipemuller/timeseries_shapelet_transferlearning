@@ -12,11 +12,6 @@ import scipy.ndimage as ndi            # to determine shape centrality
 from pylab import rcParams
 rcParams['figure.figsize'] = (6, 6)      # setting default size of plots
 
-def draw_leaf(image):
-    img = mpimg.imread(image)
-    cy, cx = ndi.center_of_mass(img)
-    return img, (cx, cy)
-
 @njit(nopython=True, parallel=True)
 def generate_candidates(data, max_len=5, min_len=2):
     step = 1
@@ -184,10 +179,10 @@ x_test = x_test.reshape(x_test.shape + (1,1,))
 print ("class:"+fname+", number of classes: "+str(nb_classes))
 x = keras.layers.Input(x_train.shape[1:])
 
-print("comprimento:"+str(len(data1)))
+print("lenght:"+str(len(data1)))
 
 for val in data1:
-    print ("y classe: " + str(val))
+    print ("y class: " + str(val))
 
 shapelet_dict = extract_shapelets(data1, min_len=6, max_len=18, verbose=0)
 
